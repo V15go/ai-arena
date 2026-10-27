@@ -1,0 +1,21 @@
+{
+  "name": "ai-arena",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.0.0",
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  },
+  "scripts": {
+    "dev:api": "uv run --directory apps/api uvicorn app.main:app --reload --host 127.0.0.1 --port 8000",
+    "dev:web": "pnpm --filter @ai-arena/web dev",
+    "contracts:generate": "pnpm --filter @ai-arena/contracts generate",
+    "typecheck:web": "pnpm --filter @ai-arena/web typecheck",
+    "test:web": "pnpm --filter @ai-arena/web test",
+    "build:web": "pnpm --filter @ai-arena/web build",
+    "test:api": "uv run --directory apps/api pytest",
+    "lint:api": "uv run --directory apps/api ruff check . && uv run --directory apps/api mypy",
+    "migrate": "uv run --directory apps/api alembic upgrade head",
+    "check": "pnpm lint:api && pnpm test:api && pnpm typecheck:web && pnpm test:web && pnpm build:web"
+  }
+}

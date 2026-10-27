@@ -1,0 +1,137 @@
+from enum import StrEnum
+
+
+class TaskType(StrEnum):
+    INVESTIGATE = "INVESTIGATE"
+    FIX = "FIX"
+    TEST = "TEST"
+    REVIEW = "REVIEW"
+    HUMAN_APPROVAL = "HUMAN_APPROVAL"
+
+
+class TaskStatus(StrEnum):
+    PENDING = "PENDING"
+    READY = "READY"
+    RUNNING = "RUNNING"
+    WAITING_APPROVAL = "WAITING_APPROVAL"
+    SUCCEEDED = "SUCCEEDED"
+    FAILED = "FAILED"
+    SKIPPED = "SKIPPED"
+    CANCELLED = "CANCELLED"
+
+
+class TaskAccess(StrEnum):
+    """Workspace access; a WRITE task takes an exclusive lock (see ARCHITECTURE.md §4.4)."""
+
+    READ = "READ"
+    WRITE = "WRITE"
+
+
+class RunStatus(StrEnum):
+    DRAFT = "DRAFT"
+    QUEUED = "QUEUED"
+    RUNNING = "RUNNING"
+    WAITING_APPROVAL = "WAITING_APPROVAL"
+    SUCCEEDED = "SUCCEEDED"
+    FAILED = "FAILED"
+    CANCELLED = "CANCELLED"
+
+
+class RunMode(StrEnum):
+    ARENA = "ARENA"
+    BASELINE = "BASELINE"
+
+
+class AttemptStatus(StrEnum):
+    RUNNING = "RUNNING"
+    SUCCEEDED = "SUCCEEDED"
+    FAILED = "FAILED"
+    INTERRUPTED = "INTERRUPTED"
+
+
+class WorkflowStatus(StrEnum):
+    ACTIVE = "ACTIVE"
+    ARCHIVED = "ARCHIVED"
+
+
+class WorkflowSource(StrEnum):
+    MODEL = "MODEL"
+    MEMORY = "MEMORY"
+    MANUAL = "MANUAL"
+
+
+class AgentStatus(StrEnum):
+    ACTIVE = "ACTIVE"
+    DEPRECATED = "DEPRECATED"
+    DISABLED = "DISABLED"
+
+
+class ApprovalStatus(StrEnum):
+    PENDING = "PENDING"
+    APPROVED = "APPROVED"
+    REJECTED = "REJECTED"
+    EXPIRED = "EXPIRED"
+
+
+class ApprovalDecision(StrEnum):
+    APPROVE = "APPROVE"
+    REJECT = "REJECT"
+
+
+class ProtectedAction(StrEnum):
+    EXPORT_PATCH = "EXPORT_PATCH"
+    CREATE_PR = "CREATE_PR"
+
+
+class FailureClass(StrEnum):
+    TRANSIENT_INFRA = "TRANSIENT_INFRA"
+    TEST_FAILURE = "TEST_FAILURE"
+    BUILD_ERROR = "BUILD_ERROR"
+    DEPENDENCY_MISSING = "DEPENDENCY_MISSING"
+    TIMEOUT = "TIMEOUT"
+    POLICY_VIOLATION = "POLICY_VIOLATION"
+    UNKNOWN = "UNKNOWN"
+
+
+class RecoveryAction(StrEnum):
+    RETRY = "RETRY"
+    REPLAN = "REPLAN"
+    ESCALATE = "ESCALATE"
+
+
+class DecisionSource(StrEnum):
+    POLICY = "POLICY"
+    MEMORY = "MEMORY"
+    MODEL = "MODEL"
+
+
+class MemoryOutcome(StrEnum):
+    SUCCEEDED = "SUCCEEDED"
+    FAILED = "FAILED"
+
+
+class SiblingFailurePolicy(StrEnum):
+    FINISH_READ_CANCEL_REST = "FINISH_READ_CANCEL_REST"
+    CANCEL_ALL = "CANCEL_ALL"
+    FINISH_ALL = "FINISH_ALL"
+
+
+class EventType(StrEnum):
+    RUN_QUEUED = "RUN_QUEUED"
+    RUN_STARTED = "RUN_STARTED"
+    PLAN_REUSED = "PLAN_REUSED"
+    TASK_READY = "TASK_READY"
+    TASK_STARTED = "TASK_STARTED"
+    TASK_LOG = "TASK_LOG"
+    TASK_SUCCEEDED = "TASK_SUCCEEDED"
+    TASK_FAILED = "TASK_FAILED"
+    TASK_RETRY_SCHEDULED = "TASK_RETRY_SCHEDULED"
+    VALIDATION_COMPLETED = "VALIDATION_COMPLETED"
+    RECOVERY_PLANNED = "RECOVERY_PLANNED"
+    MEMORY_HIT = "MEMORY_HIT"
+    MEMORY_WRITTEN = "MEMORY_WRITTEN"
+    APPROVAL_REQUESTED = "APPROVAL_REQUESTED"
+    APPROVAL_DECIDED = "APPROVAL_DECIDED"
+    RUN_SUCCEEDED = "RUN_SUCCEEDED"
+    RUN_FAILED = "RUN_FAILED"
+    RUN_CANCELLED = "RUN_CANCELLED"

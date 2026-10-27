@@ -1,0 +1,20 @@
+{
+  "name": "@ai-arena/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "TypeScript types generated from the FastAPI OpenAPI document. Do not edit src/schema.d.ts by hand.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": {
+    "export-spec": "uv run --directory ../../apps/api python -m app.scripts.export_openapi ../../packages/contracts/openapi.json",
+    "generate:types": "openapi-typescript openapi.json -o src/schema.d.ts",
+    "generate": "pnpm export-spec && pnpm generate:types",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^7.4.0",
+    "typescript": "^5.8.3"
+  }
+}
